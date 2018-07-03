@@ -85,6 +85,9 @@ func (p *Pool) Start() {
             if !workerQ.IsEmpty() && !taskQ.IsEmpty() {
                 activeWorker = workerQ.GetTop().(chan Task)
                 activeTask = taskQ.GetTop().(Task)
+            } else {
+                activeTask = nil
+                activeWorker = nil
             }
             
             select {
